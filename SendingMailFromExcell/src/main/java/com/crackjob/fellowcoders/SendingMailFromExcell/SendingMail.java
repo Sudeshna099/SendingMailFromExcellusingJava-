@@ -89,7 +89,7 @@ public class SendingMail {
             	messagebody.append("Hi "+ name+",                         \n           <br>      ");
             	messagebody.append("<html>");
             	messagebody.append("\n\n\n");
-            	messagebody.append("We are delighted to inform you that you are successfully enrolled with us for the Crack Job Batch 1 (CJB1).      Please find your details below:                  <br>              \r\n\n\n");
+            	messagebody.append("We are delighted to inform you that you are successfully enrolled with us for the Crack Job Batch 1 (CJB1). Please find your details below:                  <br>              \r\n\n\n");
             	messagebody.append("\n\n\n");
             	
             	//messagebody.append("<table>");
@@ -109,7 +109,9 @@ public class SendingMail {
             	else
             		id_no="CJ"+ (stu_slno-1);
             	fetchDataObj1.setCellData("STUDENT_DETAILS", "STUDENT_ID",stu_slno,id_no);
-            	messagebody.append("Full Name:"+name+" "+fetchDataObj1.getCellData("STUDENT_DETAILS","Last_Name" , stu_slno)+"  <br>                                      \n\n");
+            	messagebody.append(" <br> ");
+            	messagebody.append(" <br> ");
+            	messagebody.append("Full Name: "+name+" "+fetchDataObj1.getCellData("STUDENT_DETAILS","Last_Name" , stu_slno)+"  <br>                                      \n\n");
             	messagebody.append("Student ID NUMBER:  "+ id_no+"       <br>                                    \n\n");
             	messagebody.append("\n\n\n");
             	int rowNum = fetchDataObj1.getCellRowNum("COURSE_DETAILS","COURSE_CODE" , fetchDataObj1.getCellData("STUDENT_DETAILS","COURSE_CODE" , stu_slno));
@@ -136,10 +138,45 @@ public class SendingMail {
             	messagebody.append("\n");
             	messagebody.append("\n");
             	messagebody.append("\n");
-            	messagebody.append("COURSE PROVIDE:      "+fetchDataObj1.getCellData("COURSE_DETAILS","COURSE_DETAILS" , rowNum)+"       <br>                   \n\n");
+            	messagebody.append("COURSE PROVIDE:   <br> \n   ");
             	messagebody.append("\n");
+            	if(fetchDataObj1.getCellData("COURSE_DETAILS", "COURSE_CODE", rowNum).equals("C0001"))
+            	{
+            		messagebody.append("1.Aptitude:Quantitive aptitude,Reasoning,Verbal Ability <br> \n");
+            		messagebody.append("2.Coding:HTML5,CSS3,Bootstrap,Core Java <br>\n ");
+            	}
+            	else if(fetchDataObj1.getCellData("COURSE_DETAILS", "COURSE_CODE", rowNum).equals("C0002"))
+            	{
+            		messagebody.append("1.Aptitude:Quantitive aptitude,Reasoning,Verbal Ability <br>\n");
+            		messagebody.append("2.DataBase Management System(DBMS) <br>\n");
+            	}
+            	else if (fetchDataObj1.getCellData("COURSE_DETAILS", "COURSE_CODE", rowNum).equals("C0003"))
+            	{
+            		messagebody.append("1.Aptitude:Quantitive aptitude,Reasoning,Verbal Ability <br>\n");
+            		messagebody.append("2.Data Structure(DS) <br>\n");
+            		messagebody.append("3.HTML <br>\n");
+            	}
+            	else if (fetchDataObj1.getCellData("COURSE_DETAILS", "COURSE_CODE", rowNum).equals("C0004"))
+            	{
+            		messagebody.append("1.Data Structure(DS) <br> \n");
+            		messagebody.append("2.JAVA <br> \n");
+            	}
+            	else if (fetchDataObj1.getCellData("COURSE_DETAILS", "COURSE_CODE", rowNum).equals("C0005"))
+            	{
+            		messagebody.append("1.Data Structure(DS) <br> \n");
+            		messagebody.append("2.Database Management System(DBMS) <br> \n");
+            		messagebody.append("3.JAVA <br> \n");
+            		messagebody.append("4.PYTHON PROGRAMMING <br> \n");
+            	}
+            	else
+            	{
+            		messagebody.append("Course not chosen yet <br> \n\n");
+            	}
+            	messagebody.append(" <br> ");
+            	messagebody.append("\n");
+            	
             	//ref_code setting 
-            	String Ref_code= fetchDataObj1.getCellData("STUDENT_DETAILS","Last_Name" , stu_slno)+fetchDataObj1.getCellData("STUDENT_DETAILS","NAME" , stu_slno).charAt(0)+"@"+fetchDataObj1.getCellDataNumber("STUDENT_DETAILS","CONTACT _NUMBER" , stu_slno);
+            	String Ref_code= fetchDataObj1.getCellData("STUDENT_DETAILS","Last_Name" , stu_slno).toUpperCase()+fetchDataObj1.getCellData("STUDENT_DETAILS","NAME" , stu_slno).toUpperCase().charAt(0)+"@"+fetchDataObj1.getCellDataNumber("STUDENT_DETAILS","CONTACT _NUMBER" , stu_slno);
             	messagebody.append("\n");
             	fetchDataObj1.setCellData("STUDENT_DETAILS", "REF_CODE",stu_slno,Ref_code);
             	messagebody.append("\n");
@@ -147,16 +184,12 @@ public class SendingMail {
             	messagebody.append("\n");
             	messagebody.append("\n");
             	messagebody.append("Referral Code :     "+Ref_code+"          <br>                                                 \n\n");
-            	messagebody.append("\n");
-            	messagebody.append("\n");
-            	messagebody.append("\n");
+            	messagebody.append(" <br> ");
+            	messagebody.append("<br>");
             	messagebody.append("Thank you for joining us and trusting our services. Please reply back for any queries or changes in your details.\r                    \n");
-            	messagebody.append("\n");
-            	messagebody.append("\n");
-            	messagebody.append("\n");
-            	messagebody.append("\n");
-            	messagebody.append("\n");
-            
+            	messagebody.append("<br>");
+            	messagebody.append("<br>");
+            	
             	messagebody.append("  <br>     Regards,                     <br>         \r\n Crack Job Team     <br>              \r\n                          Digital Education Foundation\r  <br>                     \n       Contact:8910274229 / 8240900937 <br>       \n");
             	messagebody.append("\n");
             	
