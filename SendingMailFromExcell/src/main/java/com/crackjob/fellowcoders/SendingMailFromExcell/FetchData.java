@@ -1,6 +1,8 @@
 package com.crackjob.fellowcoders.SendingMailFromExcell;
 
 import java.io.FileInputStream;
+
+
 import java.io.FileOutputStream;
 import java.util.Calendar;
 
@@ -123,8 +125,60 @@ public class FetchData
 				return "row " + rowNum + " or column " + colName + " does not exist in xls";
 			}
 		}
+				
+		public long getCellDataNumber(String sheetName, String colName, int rowNum) {
+			try {
+				if (rowNum <= 0)
+					return -1;
 
+				int index = workbook.getSheetIndex(sheetName);
+				int col_Num = -1;
+				if (index == -1)
+					return -1;
 
+				sheet = workbook.getSheetAt(index);
+				row = sheet.getRow(0);
+				for (int i = 0; i < row.getLastCellNum(); i++) {
+					
+					if (row.getCell(i).getStringCellValue().trim().equals(colName.trim()))
+						col_Num = i;
+				}
+				if (col_Num == -1)
+					return -1;
+
+				sheet = workbook.getSheetAt(index);
+				row = sheet.getRow(rowNum - 1);
+				if (row == null)
+					return -1;
+				cell = row.getCell(col_Num);
+
+				if (cell == null)
+					return -1;
+
+				//System.out.println(cell.getCellType().name());
+				//
+				if (cell.getCellType() == Cell.CELL_TYPE_STRING)
+					return (long) cell.getNumericCellValue();
+
+				// if (cell.getCellType().STRING != null)
+
+				// if(cell.getCellType()==Xls_Reader.CELL_TYPE_STRING)
+				// return cell.getStringCellValue();
+				
+				 else if (cell.getCellType() == Cell.CELL_TYPE_BLANK)
+					return -1;
+				else
+					return Long.valueOf((long) cell.getNumericCellValue());
+
+			} catch (Exception e) {
+
+				e.printStackTrace();
+				return 0;
+			}
+		}
+				
+
+		
 		// returns the data from a cell
 		public String getCellData(String sheetName, int colNum, int rowNum) {
 			try {
@@ -178,6 +232,7 @@ public class FetchData
 				return "row " + rowNum + " or column " + colNum + " does not exist  in xls";
 			}
 		}
+		
 
 		// returns true if data is set successfully else false
 		public boolean setCellData(String sheetName, String colName, int rowNum, String data) {

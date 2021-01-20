@@ -22,7 +22,7 @@ public class AppMain {
     	StringBuffer  sb = new StringBuffer();
     	
     	SendingMail send =new SendingMail();
-    	FetchData fetchDataObj = new FetchData("D:\\java workspace\\SendingMailFromExcell\\STUDENTS& COURSE DETAILS FOR CRACKJOB.xlsx");
+    	FetchData fetchDataObj = new FetchData("C:\\Users\\SAYAK\\Desktop\\STUDENTS& COURSE DETAILS FOR CRACKJOB.xlsx");
     	int courseRowCount = 0;
     	int studentRowCount = 0 ;
      	int courseColumnCount = 0;

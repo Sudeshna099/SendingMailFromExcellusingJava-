@@ -22,7 +22,7 @@ public class SendingMail {
     {
     	
     	
-    	FetchData fetchDataObj1 = new FetchData("D:\\java workspace\\SendingMailFromExcell\\STUDENTS& COURSE DETAILS FOR CRACKJOB.xlsx");
+    	FetchData fetchDataObj1 = new FetchData("C:\\Users\\SAYAK\\Desktop\\STUDENTS& COURSE DETAILS FOR CRACKJOB.xlsx");
         // Recipient's email ID needs to be mentioned.
        
         boolean mailSentSuccessfully = false;
@@ -30,7 +30,7 @@ public class SendingMail {
             
 
             // Sender's email ID needs to be mentioned
-            final String from = "javapurpose1999@gmail.com";
+            final String from = "sayaknandy11@gmail.com";
 
             // Assuming you are sending email from through gmails smtp
             String host = "smtp.gmail.com";
@@ -63,7 +63,7 @@ public class SendingMail {
             Session session = Session.getDefaultInstance(properties,    
                     new javax.mail.Authenticator() {    
                     protected javax.mail.PasswordAuthentication getPasswordAuthentication() {    
-                    return new javax.mail.PasswordAuthentication(from,"Sudeshna@123");  
+                    return new javax.mail.PasswordAuthentication(from,"siemenskasba");  
                     }    
                    });    
             // Used to debug SMTP issues
@@ -104,11 +104,12 @@ public class SendingMail {
             	String id_no;
             	if( stu_slno<=10)
             	id_no="CJ00"+ (stu_slno-1);
-            	else if( stu_slno>10 &&  stu_slno<=99)
+            	else if( stu_slno>10 &&  stu_slno<=100)
             	id_no="CJ0"+ (stu_slno-1);
             	else
             		id_no="CJ"+ (stu_slno-1);
             	fetchDataObj1.setCellData("STUDENT_DETAILS", "STUDENT_ID",stu_slno,id_no);
+            	messagebody.append("Full Name:"+name+" "+fetchDataObj1.getCellData("STUDENT_DETAILS","Last_Name" , stu_slno)+"  <br>                                      \n\n");
             	messagebody.append("Student ID NUMBER:  "+ id_no+"       <br>                                    \n\n");
             	messagebody.append("\n\n\n");
             	int rowNum = fetchDataObj1.getCellRowNum("COURSE_DETAILS","COURSE_CODE" , fetchDataObj1.getCellData("STUDENT_DETAILS","COURSE_CODE" , stu_slno));
@@ -129,7 +130,7 @@ public class SendingMail {
             	messagebody.append("\n");
             	messagebody.append("\n");
             	messagebody.append("\n");
-            	messagebody.append("COURSE DURATION:     "+fetchDataObj1.getCellData("COURSE_DETAILS","DURATION" , rowNum)+"  months         <br>           \n\n");
+            	messagebody.append("COURSE DURATION:     "+fetchDataObj1.getCellDataNumber("COURSE_DETAILS","DURATION" , rowNum)+"  months         <br>           \n\n");
             	messagebody.append("\n");
             	messagebody.append("\n");
             	messagebody.append("\n");
@@ -138,25 +139,25 @@ public class SendingMail {
             	messagebody.append("COURSE PROVIDE:      "+fetchDataObj1.getCellData("COURSE_DETAILS","COURSE_DETAILS" , rowNum)+"       <br>                   \n\n");
             	messagebody.append("\n");
             	//ref_code setting 
-            	String Ref_code=fetchDataObj1.getCellData("STUDENT_DETAILS","Last_Name" , stu_slno)+fetchDataObj1.getCellData("STUDENT_DETAILS","NAME" , stu_slno).charAt(0)+"@"+fetchDataObj1.getCellData("STUDENT_DETAILS","CONTACT _NUMBER" , stu_slno);
+            	String Ref_code= fetchDataObj1.getCellData("STUDENT_DETAILS","Last_Name" , stu_slno)+fetchDataObj1.getCellData("STUDENT_DETAILS","NAME" , stu_slno).charAt(0)+"@"+fetchDataObj1.getCellDataNumber("STUDENT_DETAILS","CONTACT _NUMBER" , stu_slno);
             	messagebody.append("\n");
             	fetchDataObj1.setCellData("STUDENT_DETAILS", "REF_CODE",stu_slno,Ref_code);
             	messagebody.append("\n");
             	messagebody.append("\n");
             	messagebody.append("\n");
             	messagebody.append("\n");
-            	messagebody.append("REFERAL CODE :     "+Ref_code+"          <br>                                                 \n\n");
+            	messagebody.append("Referral Code :     "+Ref_code+"          <br>                                                 \n\n");
             	messagebody.append("\n");
             	messagebody.append("\n");
             	messagebody.append("\n");
-            	messagebody.append(".    Thank you for joining us and trusting our services Please reply back for any queries or changes in your details.\r                    \n");
+            	messagebody.append("Thank you for joining us and trusting our services. Please reply back for any queries or changes in your details.\r                    \n");
             	messagebody.append("\n");
             	messagebody.append("\n");
             	messagebody.append("\n");
             	messagebody.append("\n");
             	messagebody.append("\n");
             
-            	messagebody.append("  <br>     Regards                     <br>         \r\n CrackjobTeam     <br>              \r\n                          Digital Education Foundation\r  <br>                     \n       contact:8910274229 <br>       \n");
+            	messagebody.append("  <br>     Regards,                     <br>         \r\n Crack Job Team     <br>              \r\n                          Digital Education Foundation\r  <br>                     \n       Contact:8910274229 / 8240900937 <br>       \n");
             	messagebody.append("\n");
             	
             	
