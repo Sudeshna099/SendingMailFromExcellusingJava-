@@ -88,7 +88,7 @@ public class SendingMail {
             	StringBuffer messagebody = new StringBuffer();
             	messagebody.append("Hi "+ name+",                         \n           <br>      ");
             	messagebody.append("<html>");
-            	messagebody.append("\n\n\n");
+            	messagebody.append("<br>");
             	messagebody.append("We are delighted to inform you that you are successfully enrolled with us for the Crack Job Batch 1 (CJB1). Please find your details below:                  <br>              \r\n\n\n");
             	messagebody.append("\n\n\n");
             	
@@ -109,7 +109,6 @@ public class SendingMail {
             	else
             		id_no="CJ"+ (stu_slno-1);
             	fetchDataObj1.setCellData("STUDENT_DETAILS", "STUDENT_ID",stu_slno,id_no);
-            	messagebody.append(" <br> ");
             	messagebody.append(" <br> ");
             	messagebody.append("Full Name: "+name+" "+fetchDataObj1.getCellData("STUDENT_DETAILS","Last_Name" , stu_slno)+"  <br>                                      \n\n");
             	messagebody.append("Student ID NUMBER:  "+ id_no+"       <br>                                    \n\n");
@@ -185,11 +184,8 @@ public class SendingMail {
             	messagebody.append("\n");
             	messagebody.append("Referral Code :     "+Ref_code+"          <br>                                                 \n\n");
             	messagebody.append(" <br> ");
-            	messagebody.append("<br>");
             	messagebody.append("Thank you for joining us and trusting our services. Please reply back for any queries or changes in your details.\r                    \n");
             	messagebody.append("<br>");
-            	messagebody.append("<br>");
-            	
             	messagebody.append("  <br>     Regards,                     <br>         \r\n Crack Job Team     <br>              \r\n                          Digital Education Foundation\r  <br>                     \n       Contact:8910274229 / 8240900937 <br>       \n");
             	messagebody.append("\n");
             	
